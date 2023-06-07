@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+/// GetBatteryLevel fetches the current battery level of the android device.
 class GetBatteryLevel extends StatefulWidget {
   const GetBatteryLevel({super.key});
 
@@ -18,16 +19,16 @@ class _GetBatteryLevelState extends State<GetBatteryLevel> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Text(
           batteryLevel,
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.deepPurple,
             fontSize: 30,
           ),
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         ElevatedButton(
           onPressed: getBatteryLevel,
           child: const Text("Get Battery Level"),

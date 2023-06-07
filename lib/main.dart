@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_event_channel/get_battery_level.dart';
+
+import 'get_battery_level.dart';
+import 'get_battery_status.dart';
 import 'image_stream_widget.dart';
 import 'network_stream_widget.dart';
 
@@ -40,6 +42,7 @@ class _MyHomePage extends StatelessWidget {
         children: [
           NetworkStreamWidget(),
           GetBatteryLevel(),
+          GetBatteryStatus(),
           Expanded(child: ImageStreamWidget()),
         ],
       ),

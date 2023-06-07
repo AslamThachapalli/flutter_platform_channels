@@ -19,6 +19,7 @@ public class MainActivity extends FlutterActivity {
     static final String NETWORK_EVENT_CHANNEL = "platform_channel_events/connectivity";
     static final String BATTERY_CHANNEL = "platform_channel_events/battery";
     static final String IMAGE_EVENT_CHANNEL = "platform_channel_events/image";
+    static final String CHARGING_EVENT_CHANNEL = "platform_channel_events/charging";
 
     @Override
     public void configureFlutterEngine(@NonNull FlutterEngine flutterEngine) {
@@ -44,6 +45,9 @@ public class MainActivity extends FlutterActivity {
 
         EventChannel image_event = new EventChannel(messenger, IMAGE_EVENT_CHANNEL);
         image_event.setStreamHandler(new ImageStreamHandler(this));
+
+        EventChannel charging_event = new EventChannel(messenger, CHARGING_EVENT_CHANNEL);
+        charging_event.setStreamHandler(new ChargingStreamHandler(getContext()));
     }
 
     private int getBatteryLevel() {

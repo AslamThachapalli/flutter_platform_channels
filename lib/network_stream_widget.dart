@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_event_channel/utils.dart';
+
+import 'utils.dart';
 
 /// NetworkStreamWidget handles and displays streaming of network events
 class NetworkStreamWidget extends StatefulWidget {
-  /// Initialize NetworkStreamWidget with [key].
   const NetworkStreamWidget({Key? key}) : super(key: key);
 
   @override
@@ -13,14 +13,15 @@ class NetworkStreamWidget extends StatefulWidget {
 
 class _NetworkStreamWidgetState extends State<NetworkStreamWidget> {
   late Stream<Connection> networkStream;
-  final _eventChannel =
+
+  final networkChannel =
       const EventChannel('platform_channel_events/connectivity');
 
   @override
   void initState() {
     super.initState();
 
-    networkStream = _eventChannel
+    networkStream = networkChannel
         .receiveBroadcastStream()
         .distinct()
         .map((dynamic event) => intToConnection(event as int));

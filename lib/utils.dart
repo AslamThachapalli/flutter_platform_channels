@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_event_channel/constants.dart';
+
+import 'constants.dart';
 
 /// Connection is an enum of supported network states
 enum Connection {

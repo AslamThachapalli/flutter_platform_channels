@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,7 +7,6 @@ import 'constants.dart';
 
 /// ImageStreamWidget handles and displays streaming of image bytes
 class ImageStreamWidget extends StatefulWidget {
-  /// Initialize ImageStreamWidget with [key].
   const ImageStreamWidget({Key? key}) : super(key: key);
 
   @override
@@ -22,7 +19,8 @@ class ImageStreamWidgetState extends State<ImageStreamWidget> {
   StreamSubscription<dynamic>? imageSubscription;
   bool streamComplete = false;
 
-  final eventChannel = const EventChannel('platform_channel_events/image');
+  final streamImageChannel =
+      const EventChannel('platform_channel_events/image');
 
   @override
   Widget build(BuildContext context) {
@@ -76,9 +74,8 @@ class ImageStreamWidgetState extends State<ImageStreamWidget> {
   }
 
   void startImageStream() {
-    imageSubscription = eventChannel.receiveBroadcastStream([
-      {'quality': 0.9, 'chunkSize': 100}
-    ]).listen(onReceiveImageByte);
+    imageSubscription =
+        streamImageChannel.receiveBroadcastStream().listen(onReceiveImageByte);
   }
 
   void onReceiveImageByte(dynamic event) {
